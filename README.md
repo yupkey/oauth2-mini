@@ -22,6 +22,7 @@ app.use('/secret', app.oauth.authorise(), require('./routes/secret'));
 app.use(app.oauth.errorHandler());
 
 ```
+
 It's required to write own class to authenticate user and check the token
 
 User authentication example code:
