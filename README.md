@@ -5,6 +5,7 @@ OAuth2 mini server
 ## Instalation
 `npm install oath2-mini`
 
+
 ## Examples
 ```javascript
 const OAuthServer = require('oauth2-mini');
