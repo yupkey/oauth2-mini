@@ -3,7 +3,7 @@
 OAuth2 mini server
 
 ## Instalation
-`npm install oath2-mini`
+`npm install oauth2-mini`
 
 
 ## Examples
