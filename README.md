@@ -9,26 +9,25 @@ OAuth2 mini server
 ## Examples
 ```javascript
 const OAuthServer = require('oauth2-mini');
-const userAuthentication = require('./user-authention');
+const userAuthentication = require('./user-authentication');
 
 app.oauth = new OAuthServer(userAuthentication);
 
 //expecting header `Authorization: Basic <base64(login:password)>`
 app.all('/token', app.oauth.authenticate());
 
-//expecting header `Authorization: Bearer accesssToken`
+//expecting header `Authorization: Bearer <accesssToken>`
 app.use('/secret', app.oauth.authorise(), require('./routes/secret'));
 
 app.use(app.oauth.errorHandler());
 
 ```
 
-It's required to write own class to authenticate user and check the token
+It's required to write own class to authenticate the user and check the token
 
 User authentication example code:
 ```javascript
 class UserAuthentication {
-  constructor(){}
   checkUserCredentials(clientId, clientSecret, success, error) {
     //check credentials here
   }
