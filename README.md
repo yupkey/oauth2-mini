@@ -28,6 +28,15 @@ It's required to write own class to authenticate the user and check the token
 User authentication example code:
 ```javascript
 class UserAuthentication {
+  constructor() {
+    /**
+     * secretKey and jwtOptions are used to generate your access token
+     * Read more here: https://www.npmjs.com/package/jsonwebtoken
+     *
+     */
+    this.secretKey = 'your-secret-key';
+    this.jwtOptions = { expiresIn: 60 * 60 }; // default: null
+  }
   checkUserCredentials(clientId, clientSecret, success, error) {
     //check credentials here
   }
