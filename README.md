@@ -17,7 +17,9 @@ app.oauth = new OAuthServer(userAuthentication);
 app.all('/token', app.oauth.authenticate());
 
 //expecting header `Authorization: Bearer <accesssToken>`
-app.use('/secret', app.oauth.authorise(), require('./routes/secret'));
+app.use('/api', app.oauth.authorise(), (req, res) => {
+  res.json({message: 'Welcome to API'});
+});
 
 app.use(app.oauth.errorHandler());
 
@@ -32,12 +34,11 @@ class UserAuthentication {
     /**
      * secretKey and jwtOptions are used to generate your access token
      * Read more here: https://www.npmjs.com/package/jsonwebtoken
-     *
      */
     this.secretKey = 'your-secret-key';
     this.jwtOptions = { expiresIn: 60 * 60 }; // default: null
   }
-  checkUserCredentials(clientId, clientSecret, success, error) {
+  checkUserCredentials(username, password, success, error) {
     //check credentials here
   }
   checkAccessToken(accessToken, success, error) {
