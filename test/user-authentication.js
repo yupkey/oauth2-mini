@@ -50,8 +50,9 @@ class UserAuthentication {
     jwt.verify(accessToken, this.secretKey, (err, decoded) => {
       if (err) {
         error(err);
+      } else {
+        success();
       }
-      success();
     });
   }
   /**

@@ -10,7 +10,6 @@ OAuth2 mini server
 ```javascript
 const OAuthServer = require('oauth2-mini');
 const userAuthentication = require('./user-authentication');
-const jwt = require('jsonwebtoken');
 
 app.oauth = new OAuthServer(userAuthentication);
 
@@ -30,6 +29,8 @@ It's required to write own class to authenticate the user and check the token
 
 User authentication example code:
 ```javascript
+const jwt = require('jsonwebtoken');
+
 class UserAuthentication {
   constructor() {
     /**
@@ -52,8 +53,9 @@ class UserAuthentication {
     jwt.verify(accessToken, this.secretKey, (err, decoded) => {
       if (err) {
         error(err);
+      } else {
+        success();
       }
-      success();
     });
   }
   saveAccessToken(accessToken, success, error) {
